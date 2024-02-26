@@ -26,8 +26,7 @@ app.post('/todoList', async (req, res) => {
 
 app.delete('/todoList/:id', async (req, res) => {
   const id = req.params.id
-  const result = await deleteTodo(id)
-  console.log(result)
+  await deleteTodo(id)
   res.status(204).end()
 })
 
