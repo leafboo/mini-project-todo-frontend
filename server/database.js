@@ -31,8 +31,9 @@ export async function createTodo(todo) {
 }
 
 export async function deleteTodo(id) {
-  console.log(`Deleted todo: ${getTodo(id)}`)
-  const [ result ] = await pool.query(`
+  const todo = JSON.stringify(await getTodo(id))
+  console.log(`Deleted todo: ${todo}`)
+  await pool.query(`
     DELETE FROM todoList 
     WHERE id = ?
   `, [id])
