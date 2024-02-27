@@ -1,9 +1,14 @@
 import express from "express"
 import { getTodo, getTodoList, createTodo, deleteTodo } from "./database.js" 
+import cors from "cors"
+
 
 const app = express()
 
 app.use(express.json())
+
+// Enable CORS for all routes
+app.use(cors());
 
 
 app.get('/todoList', async (req, res) => {
