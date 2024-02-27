@@ -19,6 +19,7 @@ function type() {
 }
 
 function displayTodo(dataTodo) {
+  todoDataElement.textContent = ''
   let df = new DocumentFragment()
   dataTodo.forEach((todo) => {
   let div = document.createElement('div')
