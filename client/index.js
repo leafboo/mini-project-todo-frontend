@@ -7,8 +7,9 @@ const todoDataElement = document.getElementById('todoData')
 fetchData()
 
 inputTodo.addEventListener('input', type)
-enterButton.addEventListener('click', () => {
-  inputTodo.value = ''
+enterButton.addEventListener('click', async () => {
+  await postData(inputTodo.value)
+  
   type()
 })
 
@@ -23,5 +24,23 @@ async function fetchData() {
     console.log(data)
   } catch(err) {
     console.error(`Error in fetching data: ${err}`)
+  }
+}
+
+async function postData() {
+  try {
+    const todoBody = {
+      todo: inputTodo.value
+    }
+    await fetch('http://localhost:5000/todoList', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(todoBody)
+    })
+    fetchData()
+  } catch(err) {
+    console.error(err)
   }
 }
