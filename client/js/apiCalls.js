@@ -1,51 +1,6 @@
 const inputTodo = document.getElementById('todo')
-const display = document.getElementById('todoList')
-const enterButton = document.getElementById('enterButton')
 const todoDataElement = document.getElementById('todoData')
 
-// run function whenever the page loads
-fetchData(displayTodo)
-
-
-inputTodo.addEventListener('input', type)
-enterButton.addEventListener('click', async () => {
-  await postData(inputTodo.value)
-  
-  type()
-})
-
-function type() {
-  display.textContent = inputTodo.value
-}
-
-function displayTodo(dataTodo) {
-  todoDataElement.textContent = ''
-  let df = new DocumentFragment()
-  dataTodo.forEach((todo) => {
-  let div = document.createElement('div')
-  df.appendChild(div)
-
-  let span = document.createElement('span')
-  span.textContent = todo
-  div.appendChild(span)
-
-  todoDataElement.appendChild(df)
-})
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-// api calls
 async function fetchData(callback) {
   try {
     const response = await fetch('http://localhost:5000/todoList')
@@ -75,3 +30,20 @@ async function postData() {
     console.error(err)
   }
 }
+
+function displayTodo(dataTodo) {
+  todoDataElement.textContent = ''
+  let df = new DocumentFragment()
+  dataTodo.forEach((todo) => {
+  let div = document.createElement('div')
+  df.appendChild(div)
+
+  let span = document.createElement('span')
+  span.textContent = todo
+  div.appendChild(span)
+
+  todoDataElement.appendChild(df)
+})
+}
+
+export { fetchData, postData, displayTodo }
