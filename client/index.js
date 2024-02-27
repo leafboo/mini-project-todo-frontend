@@ -4,7 +4,8 @@ const enterButton = document.getElementById('enterButton')
 const todoDataElement = document.getElementById('todoData')
 
 // run function whenever the page loads
-fetchData()
+fetchData(displayTodo)
+
 
 inputTodo.addEventListener('input', type)
 enterButton.addEventListener('click', async () => {
@@ -17,11 +18,40 @@ function type() {
   display.textContent = inputTodo.value
 }
 
-async function fetchData() {
+function displayTodo(dataTodo) {
+  let df = new DocumentFragment()
+  dataTodo.forEach((todo) => {
+  let div = document.createElement('div')
+  df.appendChild(div)
+
+  let span = document.createElement('span')
+  span.textContent = todo
+  div.appendChild(span)
+
+  todoDataElement.appendChild(df)
+})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// api calls
+async function fetchData(callback) {
   try {
     const response = await fetch('http://localhost:5000/todoList')
     const data = await response.json()
-    console.log(data)
+    const dataTodo = data.map((todo) => todo.todo)
+    console.log(dataTodo)
+    callback(dataTodo)
   } catch(err) {
     console.error(`Error in fetching data: ${err}`)
   }
@@ -39,7 +69,7 @@ async function postData() {
       },
       body: JSON.stringify(todoBody)
     })
-    fetchData()
+    fetchData(displayTodo)
   } catch(err) {
     console.error(err)
   }
