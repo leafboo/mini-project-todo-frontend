@@ -42,6 +42,10 @@ function displayTodo(dataTodo) {
   span.textContent = todo
   div.appendChild(span)
 
+  let deleteButton = document.createElement('button')
+  deleteButton.textContent = 'delete'
+  div.appendChild(deleteButton)
+
   todoDataElement.appendChild(df)
 })
 }
