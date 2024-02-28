@@ -2,11 +2,10 @@
   height: 2rem;
 }
 
-
 .div-todo {
   position: relative;
   width: 18rem;
-  height: 2rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
 }
@@ -14,4 +13,40 @@
 .deleteButton {
   position: absolute;
   right: 0;
+  color: rgb(221, 3, 3);
+  background-color: white;
+  border: solid;
+  cursor: pointer;
+  border-width: .1rem;
+  border-radius: 6px;
+  height: 2.1rem;
+  width: 4rem;
+  transition: background-color 0.15s, color 0.15s;
+}
+.deleteButton:hover {
+  background-color: rgb(221, 3, 3);
+  color: white;
+}
+
+.enter-button {
+  color: rgb(0, 156, 0);
+  background-color: white;
+  border: solid;
+  cursor: pointer;
+  border-width: .1rem;
+  border-radius: 6px;
+  height: 2rem;
+  width: 4rem;
+  transition: background-color 0.15s, color 0.15s;
+}
+.enter-button:hover {
+  color: white;
+  background-color: rgb(0, 156, 0);
+}
+
+input {
+  height: 1.3rem;
+}
+label {
+  display: block;
 }
