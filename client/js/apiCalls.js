@@ -1,13 +1,13 @@
 const inputTodo = document.getElementById('todo')
 const todoDataElement = document.getElementById('todoData')
+let dataTodo = []
 
 async function fetchData(callback) {
   try {
     const response = await fetch('http://localhost:5000/todoList')
     const data = await response.json()
-    const dataTodo = data.map((todo) => todo.todo)
-    console.log(dataTodo)
-    callback(dataTodo)
+    dataTodo = data.map((todo) => todo)
+    callback()
   } catch(err) {
     console.error(`Error in fetching data: ${err}`)
   }
@@ -31,25 +31,44 @@ async function postData() {
   }
 }
 
-function displayTodo(dataTodo) {
+async function deleteTodo(todoId) {
+  try {
+    const response = await fetch(`http://localhost:5000/todoList/${todoId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    displayTodo()
+  } catch(err) {
+    console.error('Failed to delete resource:', err);
+  }
+}
+
+function displayTodo() {
+  const todoArray = dataTodo.map((todo) => todo.todo)
   todoDataElement.textContent = ''
   let df = new DocumentFragment()
   dataTodo.forEach((todo) => {
-  let div = document.createElement('div')
-  div.className = `div-todo`
-  df.appendChild(div)
+    let div = document.createElement('div')
+    div.className = `div-todo`
+    df.appendChild(div)
 
-  let span = document.createElement('span')
-  span.textContent = todo
-  div.appendChild(span)
+    let span = document.createElement('span')
+    span.textContent = todo.todo
+    div.appendChild(span)
 
-  let deleteButton = document.createElement('button')
-  deleteButton.textContent = 'delete'
-  deleteButton.className = `deleteButton delete-${todo}`
-  div.appendChild(deleteButton)
+    let deleteButton = document.createElement('button')
+    deleteButton.textContent = 'delete'
+    deleteButton.className = `deleteButton delete-${todo.todo}`
+    deleteButton.addEventListener('click', () => { deleteTodo(todo.id) })
+    div.appendChild(deleteButton)
 
-  todoDataElement.appendChild(df)
-})
+    todoDataElement.appendChild(df)
+
+  })
+  console.log(todoArray)
+
 }
 
 export { fetchData, postData, displayTodo }
