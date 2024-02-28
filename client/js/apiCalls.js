@@ -39,7 +39,7 @@ async function deleteTodo(todoId) {
         "Content-Type": "application/json"
       }
     })
-    displayTodo()
+    fetchData(displayTodo)
   } catch(err) {
     console.error('Failed to delete resource:', err);
   }
@@ -61,7 +61,7 @@ function displayTodo() {
     let deleteButton = document.createElement('button')
     deleteButton.textContent = 'delete'
     deleteButton.className = `deleteButton delete-${todo.todo}`
-    deleteButton.addEventListener('click', () => { deleteTodo(todo.id) })
+    deleteButton.addEventListener('click', async () => { await deleteTodo(todo.id) })
     div.appendChild(deleteButton)
 
     todoDataElement.appendChild(df)
