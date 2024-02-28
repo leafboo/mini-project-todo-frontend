@@ -1,0 +1,17 @@
+#todoList { 
+  height: 2rem;
+}
+
+
+.div-todo {
+  position: relative;
+  width: 18rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.deleteButton {
+  position: absolute;
+  right: 0;
+}

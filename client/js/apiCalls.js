@@ -36,6 +36,7 @@ function displayTodo(dataTodo) {
   let df = new DocumentFragment()
   dataTodo.forEach((todo) => {
   let div = document.createElement('div')
+  div.className = `div-todo`
   df.appendChild(div)
 
   let span = document.createElement('span')
@@ -44,6 +45,7 @@ function displayTodo(dataTodo) {
 
   let deleteButton = document.createElement('button')
   deleteButton.textContent = 'delete'
+  deleteButton.className = `deleteButton delete-${todo}`
   div.appendChild(deleteButton)
 
   todoDataElement.appendChild(df)
