@@ -11,8 +11,12 @@ fetchData(displayTodo)
 
 inputTodo.addEventListener('input', type)
 enterButton.addEventListener('click', async () => {
-  await postData(inputTodo.value)
-  type()
+  if (inputTodo.value) {
+    await postData(inputTodo.value)
+    inputTodo.value = ''
+    type()
+  }
+  
 })
 
 
