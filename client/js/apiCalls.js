@@ -4,7 +4,7 @@ let dataTodo = []
 
 async function fetchData(callback) {
   try {
-    const response = await fetch('http://localhost:5000/todoList')
+    const response = await fetch('http://mini-project-todo-backend-production.up.railway.app/todoList')
     const data = await response.json()
     dataTodo = data.map((todo) => todo)
     callback()
@@ -18,7 +18,7 @@ async function postData() {
     const todoBody = {
       todo: inputTodo.value
     }
-    await fetch('http://localhost:5000/todoList', {
+    await fetch('http://mini-project-todo-backend-production.up.railway.app/todoList', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -33,7 +33,7 @@ async function postData() {
 
 async function deleteTodo(todoId) {
   try {
-    const response = await fetch(`http://localhost:5000/todoList/${todoId}`, {
+    const response = await fetch(`http://mini-project-todo-backend-production.up.railway.app/${todoId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
